@@ -1,9 +1,8 @@
 const siteConfig = {
-    title: 'DREAMMERS',
+    title: 'DREAMSNOTE',
     adv: 'dream',
     buttons: {
         login: 'Войти',
-        
     },
 }
 

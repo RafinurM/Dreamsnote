@@ -70,8 +70,9 @@ export const backgroundArticles: IBackgroundArticle[] = [
 ];
 
 export const user: IUser = {
-    id: "123",
+    id: 123,
     name: "MockUser",
     email: "tetst@test.ru",
-    myDreams: ["205"],
+    createdAt: new Date(),
+    dreams: ["205"],
 };
