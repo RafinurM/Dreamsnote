@@ -1,0 +1,8 @@
+@mixin flex($direction: column) {
+    display: flex;
+    flex-direction: $direction;
+}
+
+@mixin grid($display: grid) {
+    display: $display;
+}

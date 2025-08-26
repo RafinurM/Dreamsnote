@@ -1,0 +1,22 @@
+$breakpoint-small: 480px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1280px;
+$breakpoint-extra: 1440px;
+
+@mixin media($query) {
+    @if $query == small {
+        @media (max-width: $breakpoint-small) { @content; }
+    }
+    @else if $query == medium {
+        @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) { @content; }
+    }
+    @else if $query == large {
+        @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-large){ @content; }
+    }
+    @else if $query == extra {
+        @media (min-width: $breakpoint-large) and (max-width: $breakpoint-extra) { @content; }
+    }
+    @else if ($query == bigger) {
+        @media(min-width: $breakpoint-extra) { @content; }
+    }
+}

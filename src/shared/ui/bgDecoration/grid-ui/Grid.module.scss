@@ -1,0 +1,53 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/_media.scss' as *;
+
+.grid {
+  @include grid(grid);
+  position: fixed;
+  inset: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 12px;
+  z-index: -10;
+
+  @include media(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+.column {
+  background-color: $accent; // TODO: make designer
+}
+.column_accent {
+
+  @include media(small) {
+    background-color: $secondary;
+  }
+  
+}
+
+.text {
+  padding: $standart;
+}
+
+.quote {
+  font-size: $font-size-small;
+  font-weight: 900;
+  padding: 40px 50px;
+
+  @include media(small) {
+    font-size: $font-size-small-s;
+    padding: $standart;
+  }
+}
+.accent_text {
+    color: $accent;
+    transform: translateY(100%);
+    background-color: $primary;
+}
+
+.accent {
+    background-color: $primary;
+}

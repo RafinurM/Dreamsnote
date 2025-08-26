@@ -1,0 +1,191 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/_media.scss' as *;
+
+.header {
+    @include grid(grid);
+    grid-template-rows: 100%;
+    grid-template-columns: repeat(2, 50%);
+    justify-items: start;
+    justify-content: center;
+    align-items: center;
+    color: $secondary;
+    width: calc(100% - 100px);
+    transform: translateY(50%);
+    text-transform: uppercase;
+
+
+
+    @include media(extra) {
+        // background-color: red;
+    }
+
+    @include media(large) {
+        justify-items: center;
+
+    }
+
+    @include media(medium) {}
+
+    @include media(small) {
+        @include flex(column);
+        width: 100%;
+        transform: translateY(0);
+        justify-items: center;
+    }
+}
+
+.title {
+    @include flex(row);
+
+    font-family: $mainFont;
+    letter-spacing: 5px;
+    font-weight: 900;
+    font-size: $font-size-large;
+    // background-color: $primary;
+    padding: $standart;
+    // perspective: 500px;
+    color: $primary;
+
+    &_animated {
+        perspective: 500px;
+        // transform: rotateX('20deg');
+
+        // color: blue;
+        text-shadow: 5px 5px 5px $accent;
+        backface-visibility: hidden;
+    }
+
+    &::after {
+        content: '';
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        inset-inline-start: 2px;
+        inset-block-start: 0;
+        border-top: 3px solid $primary;
+        border-inline-start: 3px solid $primary;
+        position: absolute;
+    }
+
+    &::before {
+        content: '';
+        width: 40px;
+        height: 40px;
+        // background-color: $accent;
+        position: absolute;
+        border-inline-end: 3px solid $primary;
+        border-block-end: 3px solid $primary;
+        bottom: 0;
+        inset-inline-end: 0;
+    }
+
+    @include media(large) {
+        font-size: 50px;
+
+        // &::before {
+        //     content: '';
+        //     width: 40px;
+        //     height: 40px;
+        //     bottom: 0;
+        // }
+    }
+
+    @include media(medium) {
+        font-size: $font-size-medium;
+
+        &::after {
+            width: 20px;
+            height: 20px;
+        }
+
+        &::before {
+            width: 20px;
+            height: 20px;
+        }
+
+    }
+
+    @include media(small) {
+        font-size: $font-size-small;
+        text-align: center;
+
+        &::after {
+            width: 20px;
+            height: 20px
+        }
+
+        &::before {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+}
+
+.navigation {
+    @include flex(column);
+    justify-content: center;
+    gap: 10px;
+    background-color: $primary;
+    padding: $standart;
+    font-size: $font-size-medium;
+    font-weight: 900;
+
+    @include media(large) {
+        font-size: $font-size-small;
+    }
+
+    @include media(medium) {
+        font-size: $font-size-small-s;
+        justify-self: end;
+    }
+
+    @include media(small) {
+        font-size: 1em;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+    }
+}
+
+
+.navigation_login {
+    color: $secondary;
+    background-color: transparent;
+    border: none;
+    font-family: 'MilligramVariable', sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-decoration: none;
+
+    &:hover {
+        color: $accent;
+    }
+}
+
+.title_letter {
+    transform: rotateX(20deg);
+    transform: translateX('10px', '70px');
+    transition: all 0.9s;
+    animation: vibing 2s ease-in alternate infinite forwards;
+    // transform: scale(0.6);
+    transform-style: preserve-3d;
+
+    &:nth-child(even) {
+        animation: vibing 2s ease-in alternate-reverse infinite backwards;
+    }
+}
+
+
+
+@keyframes vibing {
+    from {
+        transform: rotateX(-20deg) scale(0.9);
+    }
+
+    to {
+        transform: rotateX(20deg) scale(1);
+    }
+
+}

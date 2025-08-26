@@ -1,0 +1,85 @@
+@use "@styles/_variables.scss" as *;
+@use "@styles/mixins/_container.scss" as *;
+@use "@styles/_media.scss" as *;
+
+.dreamline {
+  @include flex(column);
+  font-family: $mainFont;
+  position: absolute;
+  top: 100px;
+  margin-inline-end: 10px;
+  padding: $standart;
+  color: $accent;
+  letter-spacing: 1px;
+  transition: all 0.6s;
+  // border: 2px solid transparent;
+}
+
+.dreamline_header {
+  @include flex(row);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dreamline_story {
+  // @include flex(column);
+  // max-height: 30vh;
+}
+
+.dreamline_story_date {
+  color: $accent;
+  margin-inline-end: 10px;
+}
+
+.dreamline_story_author {
+  color: $secondary;
+}
+
+.dreamline_story_text {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5; // число строк, после которого добавится многоточие
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: $standart;
+
+  &:hover {
+    color: $secondary;
+    border: 2px solid $accent;
+  }
+}
+
+// container
+.dreamline_actions {
+  @include flex(row);
+  justify-content: space-between;
+  margin: 5px 0;
+  align-content: flex-end;
+}
+
+.dreamline_action {
+  background-color: transparent;
+  color: $secondary;
+  border-top: 1px solid $secondary;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid $secondary;
+  border-left: 1px solid transparent;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $accent;
+    border-top: 1px solid $accent;
+    border-bottom: 1px solid $accent;
+  }
+
+  &:active {
+    border: 1px solid transparent;
+  }
+}
+
+.dreamline_likes {
+  color: $secondary;
+  font-size: 20px;
+}

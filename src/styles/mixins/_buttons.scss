@@ -1,0 +1,24 @@
+@mixin button($font, $primaryColor, $secondaryColor, $warningColor) {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: $font;
+    letter-spacing: 5px;
+    border: 3px solid transparent;
+    background-color: $secondaryColor;
+    color: $primaryColor;
+
+    &:hover {
+        color: $warningColor;
+    }
+}
+
+@mixin linkButton($accenColor, $warningColor) {
+    text-decoration: none;
+    color: $accenColor;
+    letter-spacing: 2px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    &:hover {
+        color: $warningColor
+    }
+}

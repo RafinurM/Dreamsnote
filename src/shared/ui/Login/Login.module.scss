@@ -1,0 +1,46 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/mixins/_buttons.scss' as *;
+@use '@styles/_media.scss' as *;
+
+
+.login {
+    @include flex(column);
+    gap: 20px;
+    align-items: center;
+    padding: $standart;
+    background-image: linear-gradient($accent 50%, $primary 50%);
+
+    @include media(medium) {
+        font-size: 0.7em;
+    }
+}
+
+
+.login_label {
+    font-weight: 700;
+    color: $primary;
+    font-family: $mainFont;
+}
+
+.login_input {
+    padding: $standart;
+    font-family: $mainFont;
+    border: none;
+    background: #F8EEDF;
+    background: radial-gradient(circle, $secondary 10%, $accent 100%);
+}
+
+.login_button {
+   @include button($mainFont, $primary, $secondary, $warning)
+}
+
+.tip {
+    font-family: $mainFont;
+    color: $secondary;
+
+}
+
+.link_button {
+    @include linkButton($accent, $warning)
+}

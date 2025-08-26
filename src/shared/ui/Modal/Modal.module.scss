@@ -1,0 +1,70 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/_media.scss' as *;
+
+.content {
+	@include grid(column);
+	align-items: center;
+}
+
+.modal {
+	@include flex(column);
+	position: fixed;
+	max-height: 80vh;
+	top: 50%;
+	left: 50%;
+	z-index: 9999;
+	margin: auto;
+	padding: 20px;
+	background-color: $secondary;
+	transform: translate(-50%, -50%);
+	opacity: 1;
+	text-align: justify;
+	border: 5px solid;
+	border-image-source: linear-gradient(to bottom right,
+			$accent, $primary);
+	border-image-slice: 4;
+	font-size: $font-size-small;
+	transition: all 0.25s;
+	overflow-y: auto;
+
+	@include media(small) {
+		width: 100%;
+		font-size: $font-size-small-s;
+
+	}
+
+	@include media(medium) {
+		width: 90%;
+	}
+
+	@include media(large) {
+		width: 90%;
+	}
+
+	@include media(extra) {
+		width: 80%;
+	}
+
+	&_open {
+	}
+}
+
+.close_button {
+	width: 25px;
+	height: 25px;
+	align-self: flex-end;
+	border: none;
+	background-color: $accent;
+	font-size: small;
+	color: $secondary;
+	position: absolute;
+	top: -35px;
+	right: 0;
+	transition: all 0.3s;
+
+	&:hover {
+		background-color: $warning;
+		color: $primary;
+	}
+}

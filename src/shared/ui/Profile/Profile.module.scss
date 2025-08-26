@@ -1,0 +1,61 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/mixins/_buttons.scss' as *;
+@use '@styles/_media.scss' as *;
+
+
+.profile {
+    @include flex(column);
+    gap: 20px;
+    align-items: center;
+    padding: $standart;
+    background-image: linear-gradient($accent 50%, $primary 50%);
+
+    @include media(medium) {
+        font-size: 0.7em;
+    }
+}
+
+.profile_text {
+    align-self: flex-start;
+}
+
+.logout {
+    @include button($mainFont, $primary, $secondary, $warning)
+}
+
+.dreams_list {
+    margin-top: 5%;
+}
+
+.dreams_item {
+    @include flex(row);
+    gap: 20px;
+    align-items: center;
+}
+
+
+.dreams_item_share {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: $mainFont;
+    border: 3px solid transparent;
+    background-color: $secondary;
+    color: $primary;
+
+    &:hover {
+        border: 3px solid $accent;
+    }
+}
+
+.dreams_item_link {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    color: $secondary;
+    letter-spacing: 2px;
+
+    &:hover {
+        color: $warning
+    }
+}

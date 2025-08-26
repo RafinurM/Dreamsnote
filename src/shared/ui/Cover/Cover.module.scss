@@ -1,0 +1,183 @@
+@use '@styles/_variables.scss' as *;
+@use '@styles/mixins/_container.scss' as *;
+@use '@styles/_media.scss' as *;
+
+$size: 80px;
+
+
+@keyframes makeShow {
+    from {
+        transform: rotateX(0);
+    }
+
+    50% {
+        transform: rotateX(90deg);
+    }
+
+    to {
+        transform: rotateX(95deg);
+        color: $adv2;
+    }
+
+}
+
+@keyframes rotate {
+    from {
+        transform:
+            rotateY(0)
+    }
+
+    to {
+        transform:
+            rotateY(360deg)
+    }
+}
+
+
+@keyframes adv {
+    from {
+        scale: 1;
+        opacity: 1;
+        background-color: $accent;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0;
+        background-color: $adv;
+        border: 3px solid transparent;
+    }
+
+}
+
+
+.cover {
+    position: absolute;
+    inset: 0;
+    background-color: $secondary;
+    z-index: 900;
+    border: 3px solid $primary;
+    outline-width: 4px;
+    outline-offset: -10px;
+    outline-style: solid;
+    outline-color: $primary;
+    opacity: 1;
+    transition: opacity 2s;
+
+    &_unactive {
+        opacity: 0;
+        z-index: -100;
+    }
+
+    &::before {
+        content: '';
+        width: 60px;
+        height: 60px;
+        background-color: $primary;
+        position: absolute;
+        top: 80%;
+        outline-color: $accent;
+        outline-width: 2px;
+        outline-style: solid;
+        outline-offset: -10px;
+
+    }
+
+    &::after {
+        content: '';
+        width: 60px;
+        height: 60px;
+        background-color: $primary;
+        position: absolute;
+        top: 30%;
+        left: 0;
+        outline-color: $accent;
+        outline-width: 2px;
+        outline-style: solid;
+        outline-offset: -10px;
+    }
+}
+
+.open_book {
+    position: absolute;
+    top: calc(50% - $size / 2);
+    left: calc(50% - $size / 2);
+    font-size: 1em;
+    transform-style: preserve-3d;
+    transform-origin: calc($size / 2);
+    perspective: 600px;
+    animation: rotate 3s linear infinite;
+    border: none;
+    background-color: transparent
+}
+
+.border_element {
+    @include flex(row);
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: $size;
+    height: $size;
+    border: 3px solid $primary;
+    background-color: $accent;
+    text-align: center;
+    color: $primary;
+    font-weight: 900;
+    transition: all 7s;
+    text-transform: uppercase;
+    &:hover {
+            cursor: pointer;
+        }
+
+    &_start {
+        transform-origin: center center center;
+        z-index: 900;
+        background-color: $secondary;
+        animation: adv 10s linear infinite alternate;
+    }
+
+
+    &_front {
+        z-index: 700;
+        transform: rotateY(90deg);
+        transform-origin: left center;
+        animation: adv 10s linear infinite alternate;
+    }
+
+    &_back {
+        transform-origin: center center;
+        transform: translateZ(calc(-1 * $size)) rotateY(180deg);
+        animation: adv 10s linear infinite alternate;
+    }
+
+    &_end {
+        transform: rotateY(-90deg);
+        transform-origin: right center;
+        animation: adv 10s linear infinite alternate;
+    }
+
+    &_bottom {
+        transform: rotateX(90deg);
+        transform-origin: center bottom;
+        background-color: $warning;
+        backface-visibility: hidden;
+        animation: makeShow 10s linear forwards alternate-reverse;
+    }
+
+    &_adv {
+        transform: rotateX(90deg);
+        transform-origin: center bottom;
+        backface-visibility: visible;
+        background-color: #0178bd28;
+        animation: makeShow 10s linear forwards alternate-reverse;
+    }
+
+    &_top {
+        transform: rotateX(-90deg);
+        transform-origin: center top;
+        animation: adv 10s linear infinite alternate;
+    }
+}
