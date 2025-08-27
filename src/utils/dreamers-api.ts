@@ -1,5 +1,5 @@
 export const URL =
-  import.meta.env.VITE_DREAMERS_API || "http://194.58.114.189:3000";
+  import.meta.env.VITE_DREAMERS_API || 'https://api.dreamsnote.ru';
 
 import type { IDream } from "../types/dreams";
 import type { RegisterFormSchema } from "./zod-schema";
@@ -24,32 +24,26 @@ export const checkResponse = async <T>(res: Response): Promise<T> =>
   res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 
 export const getDreamsApi = async (): Promise<IDream[]> => {
-  const res = await fetch(`${URL}/dreams`);
-  const data = await checkResponse<{ data?: IDream[]; success?: boolean }>(res);
+  const response = await fetch(`${URL}/dreams`);
+  const data = await checkResponse<{ data?: IDream[]; success?: boolean }>(response);
   return Array.isArray(data) ? data : data?.data ?? [];
 };
 
 export const getDreamByIdApi = async (id: number) => {
-  const responce = await fetch(`${URL}/dreams/${id}`);
-  const data = await responce.json();
-  if (responce.ok && data.success) {
-    return data.data;
-  } else {
-    return new Error(data);
-  }
+  const response = await fetch(`${URL}/dreams/${id}`);
+  const data = await checkResponse<{ data?: IDream; success?: boolean }>(response);
+  return data ? data.data : null;
 };
 
-export const createDreamApi = async (
-  payload: Partial<IDream>
-) => {
-  const responce = await fetch(`${URL}/dreams`, {
+export const createDreamApi = async (payload: Partial<IDream>) => {
+  const response = await fetch(`${URL}/dreams`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   });
-  const data = await checkResponse(responce);
+  const data = await checkResponse(response);
   return data;
 };
 
@@ -67,24 +61,31 @@ export const likeDreamApi = async (userId: number, dreamId: number) => {
 };
 
 export const registerUserApi = async (data: RegisterFormSchema) => {
-  const responce = await fetch(`${URL}/auth/register`, {
+  const response = await fetch(`${URL}/auth/register`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" },
   });
-  return responce;
+  return response;
 };
 
 export const loginUserApi = async (data: {
   name: string;
   password: string;
 }) => {
-  const responce = await fetch(`${URL}/auth/login`, {
+  const response = await fetch(`${URL}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  return responce;
+  return response;
 };
 
-
+export const forgotPasswordApi = async (data: { email: string }) => {
+  const response = await fetch(`${URL}/auth/forgot-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+};

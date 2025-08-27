@@ -46,6 +46,6 @@ export const useAppStore = create<IAppStore>()(
 export const useCoverIsActive = () =>
   useAppStore((state) => state.coverIsActive);
 export const useModalStatus = () => useAppStore((state) => state.modalIsOpen);
-export const changeCover = () => useAppStore.getState().changeCover;
-export const changeModalStatus = () => useAppStore.getState().changeModalStatus;
-export const changeTheme = () => useAppStore.getState().changeTheme;
+export const useChangeCover = () => useAppStore.getState().changeCover;
+export const useChangeModalStatus = () => useAppStore.getState().changeModalStatus;
+export const useChangeTheme = () => useAppStore.getState().changeTheme;

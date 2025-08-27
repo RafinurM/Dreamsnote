@@ -1,19 +1,20 @@
 import style from "./App.module.scss";
-import { Articles } from "../shared/ui/Articles";
-import { Grid } from "../shared/ui/bgDecoration/grid-ui/Grid";
-import { DreamSender } from "../shared/ui/DreamSender/DreamSender";
-import { HeaderUI } from "../shared/ui/header-ui/HeaderUI";
-import { Modal } from "../shared/ui/Modal/Modal";
-import { Profile } from "../shared/ui/Profile";
-import { Login } from "../shared/ui/Login";
+import { Articles } from "../shared/components/ui/Articles";
+import { Grid } from "../shared/components/ui/bgDecoration/grid-ui/Grid";
+import { Modal } from "../shared/components/ui/Modal/Modal";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { NotFound404 } from "../shared/pages/NotFound404";
-import { Register } from "../shared/ui/Register";
-import { Article } from "../shared/ui/Article";
-import { Forgot } from "../shared/ui/Forgot";
-import { Dream } from "../shared/ui/Dream";
-import { ProtectedRoute } from "../shared/ui/protected-route";
-import { Success } from "../shared/ui/Success/Success";
+import { ProtectedRoute } from "../shared/components/ui/protected-route";
+import { ResetPasswordUI } from "../shared/components/ui/ResetPasswordUI/ResetPasswordUI";
+import { Article } from "../shared/components/Article";
+import { DreamSender } from "../shared/components/DreamSender";
+import { Dream } from "../shared/components/Dream";
+import { ForgotPassword } from "../shared/components/ForgotPassword";
+import { Header } from "../shared/components/Header";
+import { Login } from "../shared/components/Login";
+import { Profile } from "../shared/components/Profile";
+import { Register } from "../shared/components/Register";
+import { Success } from "../shared/components/Success";
 
 function App() {
   const location = useLocation();
@@ -25,7 +26,7 @@ function App() {
           path="/"
           element={
             <>
-              <HeaderUI />
+              <Header />
               <Grid />
               <Articles />
               <DreamSender />
@@ -64,11 +65,21 @@ function App() {
             }
           ></Route>
           <Route
-            path="/forgot"
+            path="/forgot-password"
             element={
               <ProtectedRoute isPublic>
                 <Modal>
-                  <Forgot />
+                  <ForgotPassword />
+                </Modal>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/reset-password"
+            element={
+              <ProtectedRoute isPublic>
+                <Modal>
+                  <ResetPasswordUI />
                 </Modal>
               </ProtectedRoute>
             }
